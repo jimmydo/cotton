@@ -49,28 +49,28 @@ Commands
 
 - Build the latest commit of the 'master' branch of your local repo:
 
-    git push -f cotton master
+        git push -f cotton master
 
 - Build the latest commit of the 'mybranch' branch of your local repo:
 
-    git push -f cotton mybranch:master
+        git push -f cotton mybranch:master
 
 - Deploy the latest build:
 
-    cotton/deploy --app my-app
+        cotton/deploy --app my-app
 
 - Run a one-off command remotely:
 
-    cotton/run --app my-app echo Hello World
+        cotton/run --app my-app echo Hello World
 
 - View config vars
 
-    cotton/config --app my-app
+        cotton/config --app my-app
 
 - Add config vars
 
-    cotton/config-add --app appname KEY1=value1 KEY2=value2
+        cotton/config-add --app appname KEY1=value1 KEY2=value2
 
 - Remove config vars
 
-    cotton/config-remove --app appname KEY1 KEY2
+        cotton/config-remove --app appname KEY1 KEY2
