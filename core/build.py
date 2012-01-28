@@ -60,6 +60,8 @@ class Builder(object):
 
         """
 
+        self._ensure_cotton_submodule()
+
         if os.path.exists(COTTON_BUILD_FILE):
             shared.run_cmd('./' + COTTON_BUILD_FILE)
 
@@ -116,6 +118,11 @@ class Builder(object):
                 },
                 mode=0700
             )
+
+    def _ensure_cotton_submodule(self):
+        if not os.path.exists('cotton/deploy'):
+            shared.run_cmd('git submodule init')
+        shared.run_cmd('git submodule update')
 
     def _generate_deploy_files(self):
         app_type = detection.detect_app_type(self)
