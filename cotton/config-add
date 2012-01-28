@@ -1,14 +1,15 @@
 #!/usr/bin/env python
-import argparse
-
+from core import cottonargparser
 from core import shared
 
 
 def main():
     proj_config = shared.read_config()
 
-    parser = argparse.ArgumentParser(description='Add one or more configuration variables.')
-    parser.add_argument('--app', dest='app_name', choices=proj_config.keys(), required=True)
+    parser = cottonargparser.CottonArgParser(
+        proj_config,
+        description='Add one or more configuration variables.'
+    )
     parser.add_argument('new_vars', nargs='+', metavar='KEY=value')
     args = parser.parse_args()
 

@@ -1,14 +1,15 @@
 #!/usr/bin/env python
-import argparse
-
+from core import cottonargparser
 from core import shared
 
 
 def main():
     proj_config = shared.read_config()
 
-    parser = argparse.ArgumentParser(description='Remove one or more configuration variables.')
-    parser.add_argument('--app', dest='app_name', choices=proj_config.keys(), required=True)
+    parser = cottonargparser.CottonArgParser(
+        proj_config,
+        description='Remove one or more configuration variables.'
+    )
     parser.add_argument('remove_keys', nargs='+', metavar='KEY')
     args = parser.parse_args()
     remove_keys = args.remove_keys

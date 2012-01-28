@@ -3,14 +3,17 @@ import argparse
 
 import core.fab
 
+from core import cottonargparser
 from core import shared
 
 
 def main():
     proj_config = shared.read_config(repo_aliasing=False)
 
-    parser = argparse.ArgumentParser(description='Run a command on a server.')
-    parser.add_argument('--app', dest='app_name', choices=proj_config.keys(), required=True)
+    parser = cottonargparser.CottonArgParser(
+        proj_config,
+        description='Run a command on a server.'
+    )
     parser.add_argument('command', nargs=argparse.REMAINDER)
     args = parser.parse_args()
 
