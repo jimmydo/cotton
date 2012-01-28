@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# GIT_DIR defaults to .git directory. We don't want that.
+unset GIT_DIR
+cd ..
+git reset --hard && git clean -dfx && cotton/core/build.py

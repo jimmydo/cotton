@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+import argparse
+
+from core import shared
+
+
+def main():
+    proj_config = shared.read_config()
+
+    parser = argparse.ArgumentParser(description='Show configuration variables.')
+    parser.add_argument('--app', dest='app_name', choices=proj_config.keys(), required=True)
+    parser.add_argument('-s', '--shell', action='store_true')
+    args = parser.parse_args()
+
+    app_name = args.app_name
+    build_repo = shared.get_user_build_repo(app_name, proj_config[app_name])
+    config_vars = build_repo.get_config_vars()
+
+    if args.shell:
+        for key, value in config_vars:
+            print '{0}={1}'.format(key, value)
+    else:
+        if not config_vars:
+            return
+        max_key_len = max([len(v[0]) for v in config_vars])
+        for key, value in config_vars:
+            print '{0:{width}} => {1}'.format(key, value, width=max_key_len)
+
+
+if __name__ == '__main__':
+    main()

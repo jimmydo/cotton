@@ -1,0 +1,12 @@
+#!/bin/bash
+set -eu
+
+ENV_VARS_PATH=cotton-deploy/{{ env_vars_file }}
+if [ -f $ENV_VARS_PATH ]; then
+    source $ENV_VARS_PATH
+fi
+export PATH=bin:$PATH
+
+# Must use exec so that gunicorn's spawned processes will  be stopped when
+# supervisor is stopped.
+eval exec $@

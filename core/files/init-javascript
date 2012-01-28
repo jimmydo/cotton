@@ -1,0 +1,21 @@
+#!/bin/bash
+set -eu
+
+cd cotton-deploy
+
+NODE_VERSION=v0.6.8
+wget http://nodejs.org/dist/$NODE_VERSION/node-$NODE_VERSION.tar.gz
+tar xzvf node-$NODE_VERSION.tar.gz
+
+cd node-$NODE_VERSION
+./configure --prefix=$HOME/{{ app_name }}/cotton-deploy/local
+make
+make install
+
+cd ..
+rm -fr node-$NODE_VERSION
+rm node-$NODE_VERSION.tar.gz
+
+cd ..
+mkdir -p bin
+cp cotton-deploy/local/bin/node bin

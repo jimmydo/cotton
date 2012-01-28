@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eu
+
+{% if port %}
+export PORT={{ port }}
+{% endif %}
+# Must use exec so that gunicorn's spawned processes will  be stopped when
+# supervisor is stopped.
+exec cotton-deploy/run-command {{ program_command }}
