@@ -22,16 +22,16 @@ On your development machine:
 3. Add this to your .gitignore: *.pyc
 4. Create cotton-config.yml at the root of your project repo:
 
-    my-app: # Name for deployment. Other examples: deployment, staging, testing
-        build_repo: git@github.com:jimmydo/myproject-builds.git
-        ports:
-            web: 5000 # The port that the web process should listen on.
-        remote_user: ubuntu # user account on server
-        remote_home: /home/ubuntu # home directory on server
-        key_path: /path/to/ec2/ssh-key.pem # private key for accessing server
-        servers:
-            10.0.1.240: [web] # server IP and the process types that should run on the server
-        run_server: 10.0.1.240 # server on which one-off commands should be run
+        my-app: # Name for deployment. Other examples: deployment, staging, testing
+            build_repo: git@github.com:jimmydo/myproject-builds.git
+            ports:
+                web: 5000 # The port that the web process should listen on.
+            remote_user: ubuntu # user account on server
+            remote_home: /home/ubuntu # home directory on server
+            key_path: /path/to/ec2/ssh-key.pem # private key for accessing server
+            servers:
+                10.0.1.240: [web] # server IP and the process types that should run on the server
+            run_server: 10.0.1.240 # server on which one-off commands should be run
 
 5. Add the new files and commit
 6. Run: cotton/init
